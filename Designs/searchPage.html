@@ -5,25 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Christians</title>
     <style>
-        /* General styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #fbf8ef; /* Light background */
+            background-color: #fbf8ef;
             text-align: center;
             margin: 0;
             padding: 0;
         }
 
-        /* Header styling */
         .header {
-            background-color: #ffb433; /* Orange header */
+            background-color: #ffb433;
             padding: 20px;
             color: white;
             font-size: 24px;
             font-weight: bold;
         }
 
-        /* Search bar container */
         .search-container {
             margin: 20px auto;
             width: 50%;
@@ -31,19 +28,17 @@
             justify-content: center;
         }
 
-        /* Input field */
         .search-box {
             padding: 10px;
             width: 300px;
             border: 2px solid #80cbc4;
             border-radius: 20px 0 0 20px;
             outline: none;
-            background-color: #b4ebe6; /* Light cyan input */
+            background-color: #b4ebe6;
         }
 
-        /* Search button */
         .search-button {
-            background-color: #80cbc4; /* Teal search button */
+            background-color: #80cbc4;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -55,21 +50,19 @@
             background-color: #60a89b;
         }
 
-        /* Christian details display */
         .details-container {
             background: white;
             padding: 20px;
             margin: 20px auto;
             width: 50%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            display: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             border: 2px solid #80cbc4;
-            display: none; /* Initially hidden */
         }
 
-        /* Edit button */
-        .edit-button {
-            background-color: #ffb433; /* Orange */
+        .more-info-button {
+            background-color: #ffb433;
             border: none;
             padding: 10px;
             color: white;
@@ -78,23 +71,20 @@
             margin-top: 10px;
         }
 
-        .edit-button:hover {
+        .more-info-button:hover {
             background-color: #d6942a;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <div class="header">Manage Christians</div>
 
-    <!-- Search Bar -->
     <div class="search-container">
         <input type="text" id="searchInput" class="search-box" placeholder="Search by Name">
         <button class="search-button" onclick="searchChristian()">Search</button>
     </div>
 
-    <!-- Christian Details Display -->
     <div id="detailsContainer" class="details-container">
         <h2 id="christianName"></h2>
         <p><strong>Father:</strong> <span id="fatherName"></span></p>
@@ -102,72 +92,64 @@
         <p><strong>Tribe:</strong> <span id="tribe"></span></p>
         <p><strong>Clan:</strong> <span id="clan"></span></p>
         <p><strong>Place of Birth:</strong> <span id="placeOfBirth"></span></p>
-        <p><strong>Subcounty:</strong> <span id="subcounty"></span></p>
-        <p><strong>Date of Birth:</strong> <span id="dateOfBirth"></span></p>
         <p><strong>Residence:</strong> <span id="residence"></span></p>
-        <button class="edit-button">Edit</button>
+        
+        <button id="moreInfoButton" class="more-info-button" onclick="redirectToMoreInfo()">More Information</button>
     </div>
 
     <script>
-        // Dummy Christian Data
         const christians = [
-            {
-                name: "John Mwangi",
-                father: "Peter Mwangi",
-                mother: "Mary Wanjiru",
-                tribe: "Kikuyu",
-                clan: "Mbari ya Mumbi",
-                placeOfBirth: "Nyeri",
-                subcounty: "Tetu",
-                dateOfBirth: "1995-06-12",
-                residence: "Nairobi"
+            { 
+                name: "John Mwangi", 
+                father: "Peter Mwangi", 
+                mother: "Mary Wanjiru", 
+                tribe: "Kikuyu", 
+                clan: "Mbari ya Mumbi", 
+                placeOfBirth: "Nyeri", 
+                residence: "Nairobi",
+                baptism: "2005-08-15",
+                eucharist: "2010-06-20",
+                confirmation: "2013-09-10",
+                marriage: "Single"
             },
-            {
-                name: "Sarah Achieng",
-                father: "James Ochieng",
-                mother: "Grace Atieno",
-                tribe: "Luo",
-                clan: "Jo-Kisumo",
-                placeOfBirth: "Kisumu",
-                subcounty: "Nyando",
-                dateOfBirth: "1998-03-25",
-                residence: "Kisumu"
-            },
-            {
-                name: "Michael Kamau",
-                father: "Samuel Kamau",
-                mother: "Lucy Wambui",
-                tribe: "Kikuyu",
-                clan: "Mbari ya Ithaga",
-                placeOfBirth: "Murang'a",
-                subcounty: "Kangema",
-                dateOfBirth: "1992-09-10",
-                residence: "Thika"
+            { 
+                name: "Sarah Achieng", 
+                father: "James Ochieng", 
+                mother: "Grace Atieno", 
+                tribe: "Luo", 
+                clan: "Jo-Kisumo", 
+                placeOfBirth: "Kisumu", 
+                residence: "Kisumu",
+                baptism: "2003-07-12",
+                eucharist: "2011-08-22",
+                confirmation: "2014-10-05",
+                marriage: "Married"
             }
         ];
 
-        // Function to search and display a Christian's details
         function searchChristian() {
             const searchValue = document.getElementById("searchInput").value.toLowerCase();
             const christian = christians.find(c => c.name.toLowerCase() === searchValue);
 
             if (christian) {
+                localStorage.setItem("selectedChristian", JSON.stringify(christian));
+                
                 document.getElementById("christianName").innerText = christian.name;
                 document.getElementById("fatherName").innerText = christian.father;
                 document.getElementById("motherName").innerText = christian.mother;
                 document.getElementById("tribe").innerText = christian.tribe;
                 document.getElementById("clan").innerText = christian.clan;
                 document.getElementById("placeOfBirth").innerText = christian.placeOfBirth;
-                document.getElementById("subcounty").innerText = christian.subcounty;
-                document.getElementById("dateOfBirth").innerText = christian.dateOfBirth;
                 document.getElementById("residence").innerText = christian.residence;
                 
-                // Show details container
                 document.getElementById("detailsContainer").style.display = "block";
             } else {
                 alert("Christian not found!");
-                document.getElementById("detailsContainer").style.display = "none";
             }
+        }
+
+        function redirectToMoreInfo() {
+            window.location.href = "more-info.html";
         }
     </script>
 
