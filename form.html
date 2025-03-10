@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4A002A;
+            color: black;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .container {
+            max-width: 600px;
+            background: #F1E9E9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ffb433;
+            border-radius: 5px;
+            display: block;
+        }
+        button {
+            background: #6d5507;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+        button:hover {
+            background:#C2AE6D;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #4A002A;
+            border-radius: 5px;
+            background: #C2AE6D;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personal Information Form</h2>
+        <form>
+            <div class="section">
+                <h3>Personal Information</h3>
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="father">Father's Name:</label>
+                <input type="text" id="father" name="father" required>
+                
+                <label for="mother">Mother's Name:</label>
+                <input type="text" id="mother" name="mother" required>
+                
+                <label for="tribe">Tribe:</label>
+                <input type="text" id="tribe" name="tribe">
+                
+                <label for="clan">Clan:</label>
+                <input type="text" id="clan" name="clan">
+                
+                <label for="village">Village:</label>
+                <input type="text" id="village" name="village">
+                
+                <label for="subcounty">Subcounty:</label>
+                <input type="text" id="subcounty" name="subcounty">
+                
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+                
+                <label for="residence">Residence:</label>
+                <input type="text" id="residence" name="residence">
+            </div>
+            
+            <div class="section">
+                <h3>Baptism</h3>
+                <label for="baptismPlace">Place of Baptism:</label>
+                <input type="text" id="baptismPlace" name="baptismPlace">
+                
+                <label for="baptismDate">Date:</label>
+                <input type="date" id="baptismDate" name="baptismDate">
+                
+                <label for="baptisedBy">Person that Baptised You:</label>
+                <input type="text" id="baptisedBy" name="baptisedBy">
+                
+                <label for="msimamizi">Msimamizi:</label>
+                <input type="text" id="msimamizi" name="msimamizi">
+            </div>
+            
+            <div class="section">
+                <h3>Eucharist</h3>
+                <label for="eucharistPlace">Place:</label>
+                <input type="text" id="eucharistPlace" name="eucharistPlace">
+                
+                <label for="eucharistDate">Date:</label>
+                <input type="date" id="eucharistDate" name="eucharistDate">
+            </div>
+            
+            <div class="section">
+                <h3>Confirmation</h3>
+                <label for="confirmationPlace">Place:</label>
+                <input type="text" id="confirmationPlace" name="confirmationPlace">
+                
+                <label for="confirmationDate">Date:</label>
+                <input type="date" id="confirmationDate" name="confirmationDate">
+                
+                <label for="confirmationNo">Confirmation No:</label>
+                <input type="text" id="confirmationNo" name="confirmationNo">
+            </div>
+            
+            <div class="section">
+                <h3>Marriage</h3>
+                <label for="spouse">Spouse:</label>
+                <input type="text" id="spouse" name="spouse">
+                
+                <label for="marriagePlace">Place of Marriage:</label>
+                <input type="text" id="marriagePlace" name="marriagePlace">
+                
+                <label for="marriageDate">Date:</label>
+                <input type="date" id="marriageDate" name="marriageDate">
+                
+                <label for="marriageNo">Marriage No:</label>
+                <input type="text" id="marriageNo" name="marriageNo">
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
