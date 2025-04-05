@@ -22,7 +22,7 @@ export const createMarriage = asyncHandler(async (req: Request, res: Response) =
 
         // Proceed to create marriage
         const marriageResult = await pool.query(
-            `INSERT INTO baptism(spouse_name, marriage_place, marriage_date, marriage_no, user_id) 
+            `INSERT INTO marriage(spouse_name, marriage_place, marriage_date, marriage_no, user_id) 
              VALUES ($1, $2, $3, $4, $5) RETURNING *`,
             [spouse_name, marriage_place, marriage_date, marriage_no, user_id]
         );

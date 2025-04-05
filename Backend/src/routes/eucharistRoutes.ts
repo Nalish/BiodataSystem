@@ -8,7 +8,7 @@ const router = express.Router()
 
 //Librarian Access
 //Librarians can create, update, and delete books
-router.post("/", protect,adminClergyGuard, createEucharist)
+router.post("/", createEucharist)
 router.get("/", getEucharist)
 router.get("/:id", protect,adminClergyGuard, getEucharistById)
 router.put("/:id", protect,adminClergyGuard, updateEucharist)

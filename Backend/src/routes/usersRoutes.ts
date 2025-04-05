@@ -11,7 +11,7 @@ const router = express.Router()
 //Librarian can manage all users
 //Librarians can create, update and get users
 router.post("/", protect, adminClergyGuard, createUser)
-router.get("/", protect, adminGuard, getUsers)
+router.get("/", getUsers)
 router.get("/:id", protect, adminClergyGuard, getUserById)
 router.put("/:id",updateUser)
 
