@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Christians</title>
+   
+</head>
+<body>
+
+    <div class="header">Manage Christians</div>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search by Name">
+        <button class="search-button" onclick="searchChristian()">Search</button>
+    </div>
+
+    <div id="detailsContainer" class="details-container">
+        <h2 id="christianName"></h2>
+        <p><strong>Father:</strong> <span id="fatherName"></span></p>
+        <p><strong>Mother:</strong> <span id="motherName"></span></p>
+        <p><strong>Tribe:</strong> <span id="tribe"></span></p>
+        <p><strong>Clan:</strong> <span id="clan"></span></p>
+        <p><strong>Place of Birth:</strong> <span id="placeOfBirth"></span></p>
+        <p><strong>Residence:</strong> <span id="residence"></span></p>
+        
+        <button id="moreInfoButton" class="more-info-button" onclick="redirectToMoreInfo()">More Information</button>
+    </div>
+</body>
+</html>
