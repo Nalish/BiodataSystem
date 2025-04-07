@@ -14,9 +14,4 @@ export const routes: Routes = [
     {path:'register',component:RegisterComponent},
     {path:'search',component:SearchComponent},
     {path:'form',component:FormComponent},
-
-
-    
-
-
 ]
