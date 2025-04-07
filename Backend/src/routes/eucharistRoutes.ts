@@ -10,14 +10,14 @@ const router = express.Router()
 //Librarians can create, update, and delete books
 router.post("/", createEucharist)
 router.get("/", getEucharist)
-router.get("/:id", protect,adminClergyGuard, getEucharistById)
-router.put("/:id", protect,adminClergyGuard, updateEucharist)
+router.get("/:id", getEucharistById)
+router.put("/:id", updateEucharist)
 
 
 
 //Admins can manage all books
 //Admins can create, update, and delete books
-router.delete("/:id", protect,adminGuard, deleteEucharist)
+router.delete("/:id", deleteEucharist)
 
 
 
