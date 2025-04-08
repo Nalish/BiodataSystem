@@ -1,4 +1,4 @@
-import { NextFunction, Response } from "express";
+import { NextFunction, Response, Request } from "express";
 import jwt from "jsonwebtoken";
 import asyncHandler from "../asyncHandler";
 import { UserRequest } from "../../utils/types/userTypes";
@@ -22,7 +22,8 @@ export const protect = asyncHandler(async (req: UserRequest, res: Response, next
 
     //if no token found
     if (!token) {
-        res.status(401).json({ message: "Not authorized , no token" })
+        res.status(401).json({ message: "Not authorized , no token" });
+        return
     }
 
     try {
@@ -36,7 +37,7 @@ export const protect = asyncHandler(async (req: UserRequest, res: Response, next
 
         //get the user from database
         const userQuery = await pool.query(
-            "SELECT users.id, users.name, users.email, users.role FROM users WHERE users.id = $1",
+            "SELECT * FROM users WHERE users.id = $1",
             [decoded.userId]
         );
 
