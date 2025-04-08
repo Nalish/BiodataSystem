@@ -14,20 +14,7 @@ export class DashboardComponent {
   constructor(private router:Router, private apiService: ApiService){}
   christianCount: number = 0; // Added to store the count value
 
-  ngOnInit(): void {
-    this.loadUserCount();
-  }
-  
-  loadUserCount(): void {
-    this.apiService.getChristianCount().subscribe({
-      next: (res) => {
-        this.christianCount = res.count;
-      },
-      error: (err) => {
-        console.error('Failed to load christian count:', err);
-      }
-    });
-  }
+ 
 
 
   addChristian() {

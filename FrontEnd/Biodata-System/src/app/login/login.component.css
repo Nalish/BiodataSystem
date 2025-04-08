@@ -1,11 +1,10 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1e9e9;
+
 body{
     display: flex;
     justify-content: center;
-  
+    align-items: center;
 }
+
 
 
 .auth-container {
