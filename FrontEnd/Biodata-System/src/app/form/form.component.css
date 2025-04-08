@@ -49,6 +49,11 @@ button {
 button:hover {
     background:#C2AE6D;
 }
+button:disabled{
+    background-color: #d3d3d3; /* Light gray */
+    color: #a9a9a9; /* Darker gray for text */
+    cursor: not-allowed;
+}
 .section {
     margin-bottom: 20px;
     padding: 10px;

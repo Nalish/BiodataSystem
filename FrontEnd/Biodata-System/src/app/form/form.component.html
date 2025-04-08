@@ -1,91 +1,89 @@
 <body>
     <div class="container">
         <h2>Personal Information Form</h2>
-        <form>
+        <form [formGroup]="christianForm" (ngSubmit)="onSubmit()" class="formContainer">
             <div class="section">
                 <h3>Personal Information</h3>
                 <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" formControlName="name" required>
                 
                 <label for="father">Father's Name:</label>
-                <input type="text" id="father" name="father" required>
+                <input type="text" id="father" formControlName="father" required>
                 
                 <label for="mother">Mother's Name:</label>
-                <input type="text" id="mother" name="mother" required>
+                <input type="text" id="mother" formControlName="mother" required>
                 
                 <label for="tribe">Tribe:</label>
-                <input type="text" id="tribe" name="tribe">
+                <input type="text" id="tribe" formControlName="tribe">
                 
                 <label for="clan">Clan:</label>
-                <input type="text" id="clan" name="clan">
+                <input type="text" id="clan" formControlName="clan">
                 
                 <label for="village">Village:</label>
-                <input type="text" id="village" name="village">
+                <input type="text" id="village" formControlName="village">
                 
                 <label for="subcounty">Subcounty:</label>
-                <input type="text" id="subcounty" name="subcounty">
+                <input type="text" id="subcounty" formControlName="subcounty">
                 
                 <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob">
+                <input type="date" id="dob" formControlName="dob">
                 
                 <label for="residence">Residence:</label>
-                <input type="text" id="residence" name="residence">
+                <input type="text" id="residence" formControlName="residence">
             </div>
             
             <div class="section">
                 <h3>Baptism</h3>
                 <label for="baptismPlace">Place of Baptism:</label>
-                <input type="text" id="baptismPlace" name="baptismPlace">
+                <input type="text" id="baptismPlace" formControlName="baptismPlace">
                 
                 <label for="baptismDate">Date:</label>
-                <input type="date" id="baptismDate" name="baptismDate">
+                <input type="date" id="baptismDate" formControlName="baptismDate">
                 
                 <label for="baptisedBy">Person that Baptised You:</label>
-                <input type="text" id="baptisedBy" name="baptisedBy">
+                <input type="text" id="baptisedBy" formControlName="baptisedBy">
                 
                 <label for="administrator">Administrator(Msimamizi):</label>
-                <input type="text" id="administrator" name="administrator">
+                <input type="text" id="administrator" formControlName="administrator">
             </div>
             
             <div class="section">
                 <h3>Eucharist</h3>
                 <label for="eucharistPlace">Place:</label>
-                <input type="text" id="eucharistPlace" name="eucharistPlace">
+                <input type="text" id="eucharistPlace" formControlName="eucharistPlace">
                 
                 <label for="eucharistDate">Date:</label>
-                <input type="date" id="eucharistDate" name="eucharistDate">
+                <input type="date" id="eucharistDate" formControlName="eucharistDate">
             </div>
             
             <div class="section">
                 <h3>Confirmation</h3>
                 <label for="confirmationPlace">Place:</label>
-                <input type="text" id="confirmationPlace" name="confirmationPlace">
+                <input type="text" id="confirmationPlace" formControlName="confirmationPlace">
                 
                 <label for="confirmationDate">Date:</label>
-                <input type="date" id="confirmationDate" name="confirmationDate">
+                <input type="date" id="confirmationDate" formControlName="confirmationDate">
                 
                 <label for="confirmationNo">Confirmation No:</label>
-                <input type="text" id="confirmationNo" name="confirmationNo">
+                <input type="text" id="confirmationNo" formControlName="confirmationNo">
             </div>
             
             <div class="section">
                 <h3>Marriage</h3>
                 <label for="spouse">Spouse:</label>
-                <input type="text" id="spouse" name="spouse">
+                <input type="text" id="spouse" formControlName="spouse">
                 
                 <label for="marriagePlace">Place of Marriage:</label>
-                <input type="text" id="marriagePlace" name="marriagePlace">
+                <input type="text" id="marriagePlace" formControlName="marriagePlace">
                 
                 <label for="marriageDate">Date:</label>
-                <input type="date" id="marriageDate" name="marriageDate">
+                <input type="date" id="marriageDate" formControlName="marriageDate">
                 
                 <label for="marriageNo">Marriage No:</label>
-                <input type="text" id="marriageNo" name="marriageNo">
+                <input type="text" id="marriageNo" formControlName="marriageNo">
             </div>
             
-            <button type="submit">Submit</button>
+            <button type="submit" [disabled]="christianForm.invalid">Submit</button>
         </form>
     </div>
 </body>
-
-
