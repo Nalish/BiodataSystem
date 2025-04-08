@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LoginResponse } from '../login/login.component';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +11,22 @@ export class ApiService {
   private baseUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
+  testBackendConnection() {
+    return this.http.get(`${this.baseUrl}/test`, { withCredentials: true });
+  }
+  // Create an HttpHeaders object with the token
 
-  loginChristian(data: any) {
-    return this.http.post(`${this.baseUrl}/auth/login`, data);
+
+
+
+
+  loginChristian(email: string, password: string): Observable<LoginResponse> {
+    const loginData = { email, password };
+    return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`, loginData);
   }
   registerChristian(data: any) {
-    return this.http.post(`${this.baseUrl}/auth/register`, data);
+    return this.http.post(`${this.baseUrl}/auth/register`, data,{withCredentials: true});
+    
   }
 
   getChristians() {

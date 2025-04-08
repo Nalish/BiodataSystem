@@ -1,20 +1,13 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1e9e9;
+body{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-image: url(images/sunset-sky.jpg); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    margin: 0;
+    height:100vh;
 }
 
+
 .auth-container {
-    background-color: rgba(255, 255, 255, 0.484);
+    background-color: rgba(255, 255, 255, 0.8); /* Increased opacity for better visibility */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -47,7 +40,7 @@ button {
 }
 
 button:hover {
-    background-color:   #c2ae6d;
+    background-color: #c2ae6d;
 }
 
 a {
@@ -60,4 +53,11 @@ a {
 
 a:hover {
     color: #c2ae6d;
+}
+
+/* Optional: Loading spinner styling */
+.loading-spinner {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #4a002a;
 }

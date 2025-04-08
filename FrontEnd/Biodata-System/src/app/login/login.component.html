@@ -1,28 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-   
-</head>
-
 <body>
+    
 
-    <div class="auth-container">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email Address" required>
-        <input type="password" id="login-password" placeholder="Password" required>
-        <button (click)="navigateToDashboard()">Login</button>
-        <p>
-            Don't have an account
-            <span (click)="navigateToRegister()" [ngStyle]="{'color':'#4A002A','cursor':'pointer'}">Register</span>
-        </p>
-    </div>
-
-    <script src="script.js"></script>
+<div class="auth-container">
+    <h2>Login</h2>
+  
+    <!-- Login Form -->
+    <form (ngSubmit)="login()">
+      <div>
+        <input
+          type="email"
+          id="login-email"
+          placeholder="Email Address"
+          [(ngModel)]="username"
+          name="username"
+          required
+          [disabled]="isLoading"
+        />
+      </div>
+  
+      <div>
+        <input
+          type="password"
+          id="login-password"
+          placeholder="Password"
+          [(ngModel)]="password"
+          name="password"
+          required
+          [disabled]="isLoading"
+        />
+      </div>
+  
+      <!-- Error message display -->
+      <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="isLoading">Login</button>
+  
+      <!-- Loading Spinner (optional) -->
+      <div *ngIf="isLoading" class="loading-spinner">
+        <p>Loading...</p>
+      </div>
+    </form>
+  
+    <!-- Navigation to Register page -->
+    <p>
+      Don't have an account? 
+      <span
+        (click)="navigateToRegister()"
+        [ngStyle]="{ color: '#4A002A', cursor: 'pointer' }"
+        >Register</span
+      >
+    </p>
+  </div>
 </body>
-
-</html>
-

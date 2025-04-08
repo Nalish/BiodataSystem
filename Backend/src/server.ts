@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 //Cookie parser middleware
 app.use(cookieParser())
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:4200",
     methods: "GET, POST, PUT, DELETE",
     credentials: true //allows cookies and auth headers
 }))
@@ -48,8 +48,15 @@ app.use("/api/confirmation", confirmRoutes )
 app.use("/api/marriage", marriageRoutes )
 
 
+app.get('/api/test', (req, res) => {
+    res.json({ message: "Frontend successfully connected to backend!" });
+  });
+
+
 //5:middlewares after the routes
 app.use(notFound)
+
+  
 
 // start the server
 

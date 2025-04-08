@@ -39,12 +39,15 @@ export const registerUser = asyncHandler(async (req: Request, res: Response, nex
 })
 
 
-
 export const loginUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    const { email, password } = req.body;
 
-    const { email, password } = req.body
+    // // Validate email and password
+    // if (!email || !password) {
+    //     return res.status(400).json({ message: "Please provide both email and password" });
+    // }
 
-    // Check if user exists
+    // Check if user exists in the database
     const userQuery = await pool.query(
         `SELECT users.id, users.name, users.email, users.password_hash, users.role
         FROM users
@@ -52,35 +55,30 @@ export const loginUser = asyncHandler(async (req: Request, res: Response, next: 
         [email]
     );
 
+    // If no user is found, return an error
     if (userQuery.rows.length === 0) {
-        res.status(401).json({ message: "Invalid email or password" });
-        return;
+        return res.status(401).json({ message: "Invalid email or password" });
     }
 
-
-    //query the user
+    // Retrieve the user data from the query result
     const user = userQuery.rows[0];
 
-
-    // check if the user is already logged in
+    // Check if the user is already logged in (via the cookie)
     if (req.cookies.access_token) {
-        res.status(400).json({ message: "User already logged in" });
-        return;
+        return res.status(400).json({ message: "User already logged in" });
     }
 
+    // Compare the entered password with the stored hash
+    const isMatch = await bcrypt.compare(password, user.password_hash);
 
-    // Compare passwords
-    const isMatch = await bcrypt.compare(password, user.password_hash)
     if (!isMatch) {
-        res.status(401).json({ message: "Invalid email or password" });
-        return;
+        return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Generate JWT token (user-specific)
+    // Generate the JWT token (custom function for token generation)
     await generateToken(res, user.id, user.role);
-    // await console.log("😐😐", req.cookies)
 
-
+    // Respond with user data and success message
     res.status(200).json({
         message: "Login successful",
         user: {
@@ -90,9 +88,7 @@ export const loginUser = asyncHandler(async (req: Request, res: Response, next: 
             role: user.role,
         }
     });
-
-    //next();
-})
+});
 
 
 export const logoutUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
