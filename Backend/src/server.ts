@@ -42,7 +42,6 @@ app.use(cors({
 //4:create the routes
 app.use("/api/users", usersRoutes )
 app.use("/api/auth", authRoutes )
-
 app.use("/api/baptism", baptismRoutes )
 app.use("/api/eucharist", eucharistRoutes )
 app.use("/api/confirmation", confirmRoutes )

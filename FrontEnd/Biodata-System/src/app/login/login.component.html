@@ -15,7 +15,10 @@
         <input type="email" id="login-email" placeholder="Email Address" required>
         <input type="password" id="login-password" placeholder="Password" required>
         <button (click)="navigateToDashboard()">Login</button>
-        <a href="register.html">Don't have an account? Register</a>
+        <p>
+            Don't have an account
+            <span (click)="navigateToRegister()" [ngStyle]="{'color':'#4A002A','cursor':'pointer'}">Register</span>
+        </p>
     </div>
 
     <script src="script.js"></script>
