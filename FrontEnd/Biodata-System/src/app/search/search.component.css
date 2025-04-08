@@ -4,7 +4,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    
+
 }
 
 .header {
@@ -44,8 +44,8 @@ body {
     background-color: #c2ae6d;
 }
 
-.details-container {
-    background: white;
+/* .details-container {
+    background: rgb(112, 23, 78);
     padding: 20px;
     margin: 20px auto;
     width: 50%;
@@ -53,7 +53,32 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     border: 2px solid black;
+} */
+/* .display-christians {
+    background: rgb(163, 70, 127);
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid black;
+} */
+
+.christian-details {
+    background-color: #fff;
+    border: 1px solid #c2ae6d;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
 
 .more-info-button {
     background-color: #ffb433;

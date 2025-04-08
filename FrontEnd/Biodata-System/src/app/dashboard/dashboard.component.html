@@ -20,8 +20,8 @@
     <!-- Dashboard Content -->
     <div class="dashboard">
         <h1>Christian Data Management</h1>
-        <div class="total-christians">
-            Total Christians: <span id="christianCount">0</span>
+        <div class="total-christians" (change)="loadUserCount()">
+            Total Christians: <span id="christianCount">{{ christianCount }}</span>
         </div>
     </div>
 

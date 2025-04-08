@@ -31,7 +31,13 @@ app.use(express.json()) // for parsing application/json3
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 //Cookie parser middleware
 app.use(cookieParser())
+
+
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:4200'];
+
+//CORS middleware
 app.use(cors({
+    origin: 'http://localhost:4200',
     origin: "http://localhost:4200",
     methods: "GET, POST, PUT, DELETE",
     credentials: true //allows cookies and auth headers
