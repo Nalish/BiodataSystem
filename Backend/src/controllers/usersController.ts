@@ -4,35 +4,6 @@ import asyncHandler from "../middlewares/asyncHandler"
 import bcrypt from "bcrypt"
 
 
-
-//This will handle all user-related operations 
-export const createUser = asyncHandler(async (req, res) => {
-    try {
-        const { name, email, password_hash , role } = req.body
-
-        //check if email exists
-        const emailCheck = await pool.query("SELECT id FROM users WHERE email = $1", [email])
-
-        if (emailCheck.rows.length > 0) {
-            res.status(400).json({
-                message: "User already exists"
-            })
-            return
-        }
-        //insert the user 
-        const userResult = await pool.query(
-            "INSERT INTO users (name, email, password_hash, role) VALUES($1, $2, $3, $4) RETURNING *", [name, email, password_hash, role]
-        )
-        res.status(201).json({
-            message: "User successfully created",
-            user: userResult.rows[0]
-        })
-    } catch (error) {
-        console.error("Error creating user:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-})
-
 //Get All users 
 export const getUsers = asyncHandler(async (req, res) => {
     try {
@@ -45,8 +16,26 @@ export const getUsers = asyncHandler(async (req, res) => {
     }
 })
 
+//Get single user by name
+export const getUserByName = asyncHandler(async (req, res) => {
+    try {
+        const { name } = req.params;
+        const result = await pool.query(
+            "SELECT * FROM users WHERE TRIM(LOWER(name)) = TRIM(LOWER($1))",
+            [name]
+        );
+        if (result.rows.length === 0) {
+            res.status(400).json({ message: "User not found" });
+            return;
+        }
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error("Error fetching user by name:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
-//Get single user
+//Get single user by Id
 export const getUserById = asyncHandler(async (req, res) => {
     try {
         const { id } = req.params
@@ -64,12 +53,38 @@ export const getUserById = asyncHandler(async (req, res) => {
 })
 
 
+
+//Get total number of users
+export const getUserCount = asyncHandler(async (req, res) => {
+    try {
+        const result = await pool.query("SELECT COUNT(*) FROM users");
+        const count = result.rows[0].count;
+        res.json({ count });
+        console.log(count);
+    } catch (error) {
+        console.error("Error fetching user count:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+// user.controller.js
+// app.get('/api/users/count', async (req, res) => {
+//     try {
+//         const count = await User.countDocuments(); // MongoDB
+//         // or for SQL: const result = await pool.query('SELECT COUNT(*) FROM users');
+//         res.json({ count });
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to get user count' });
+//     }
+// });
+
 //update user
 
 export const updateUser = asyncHandler(async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, email, password, role, father, mother, tribe, clan, birth_place, birth_date, sub_county, residence} = req.body;
+        const { name, email, password, role, father, mother, tribe, clan, birth_place, birth_date, sub_county, residence } = req.body;
 
         // Check if user exists
         const userCheck = await pool.query("SELECT * FROM users WHERE id = $1", [id]);

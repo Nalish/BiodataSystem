@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,91 +10,96 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  loginChristian(data: any) {
+  loginChristian(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/auth/login`, data);
   }
-  registerChristian(data: any) {
+  registerChristian(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/auth/register`, data);
   }
 
-  getChristians() {
+  getChristians(): Observable<any> {
     return this.http.get(`${this.baseUrl}/users`);
   }
 
-  getChristianById(id: string) {
+  getChristianById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/users/${id}`);
   }
-  createChristian(data: any) {
-    return this.http.post(`${this.baseUrl}/users`, data);
+  getChristianByName(name: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/name/${name}`);
   }
-  updateChristian(id: string, data: any) {
+
+  getChristianCount(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/count`);
+  }
+
+  updateChristian(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/users/${id}`, data);
   }
-  deleteChristian(id: string) {
+  deleteChristian(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/users/${id}`);
   }
 
-  getBaptisms() {
+  getBaptisms(): Observable<any> {
     return this.http.get(`${this.baseUrl}/baptism`);
   }
-  getBaptismById(id: string) {
+  getBaptismById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/baptism/${id}`);
   }
-  createBaptism(data: any) {
+  createBaptism(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/baptism`, data);
   }
-  updateBaptism(id: string, data: any) {
+  updateBaptism(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/baptism/${id}`, data);
   }
-  deleteBaptism(id: string) {
+  deleteBaptism(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/baptism/${id}`);
   }
 
-  getEucharists() {
+  getEucharists(): Observable<any> {
     return this.http.get(`${this.baseUrl}/eucharist`);
   }
-  getEucharistById(id: string) {
+  getEucharistById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/eucharist/${id}`);
   }
-  createEucharist(data: any) {
+  createEucharist(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/eucharist`, data);
   }
-  updateEucharist(id: string, data: any) {
+  updateEucharist(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/eucharist/${id}`, data);
   }
-  deleteEucharist(id: string) {
+  deleteEucharist(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/eucharist/${id}`);
   }
 
-  getConfirmations() {
+  getConfirmations(): Observable<any> {
     return this.http.get(`${this.baseUrl}/confirmation`);
   }
-  getConfirmationById(id: string) {
+  getConfirmationById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/confirmation/${id}`);
   }
-  createConfirmation(data: any) {
+  createConfirmation(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/confirmation`, data);
   }
-  updateConfirmation(id: string, data: any) {
+  updateConfirmation(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/confirmation/${id}`, data);
   }
-  deleteConfirmation(id: string) {
+  deleteConfirmation(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/confirmation/${id}`);
   }
 
-  getMarriages() {
+  getMarriages(): Observable<any> {
     return this.http.get(`${this.baseUrl}/marriage`);
   }
-  getMarriageById(id: string) {
+  getMarriageById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/marriage/${id}`);
   }
-  createMarriage(data: any) {
+  createMarriage(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/marriage`, data);
   }
-  updateMarriage(id: string, data: any) {
+  updateMarriage(id: string, data: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/marriage/${id}`, data);
   }
-  deleteMarriage(id: string) {
+  deleteMarriage(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/marriage/${id}`);
   }
 

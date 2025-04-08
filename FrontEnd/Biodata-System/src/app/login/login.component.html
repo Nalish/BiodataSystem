@@ -5,20 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-   
 </head>
 
 <body>
 
     <div class="auth-container">
-        <h2>Login</h2>
-        <input type="email" id="login-email" placeholder="Email Address" required>
-        <input type="password" id="login-password" placeholder="Password" required>
-        <button (click)="navigateToDashboard()">Login</button>
-        <a href="register.html">Don't have an account? Register</a>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+            <h2>Login</h2>
+            <input type="email" id="login-email"formControlName="email" placeholder="Email Address" required>
+            <input type="password" id="login-password" formControlName="password" placeholder="Password" required>
+            <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error">
+                Password is required.
+            </div>
+            <button type="submit" [disabled]="form.invalid">Login</button>
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+            <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+            <a routerLink="/register">Don't have an account? Register</a>
+        </form>
     </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

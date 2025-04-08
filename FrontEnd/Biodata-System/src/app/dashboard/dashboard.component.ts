@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,8 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'] // Corrected from 'styleUrl'
 })
 export class DashboardComponent {
-  constructor(private router:Router){}
-  christianCount: number = 0; // Removed 'const' to allow mutation
+  constructor(private router:Router, private apiService: ApiService){}
+  christianCount: number = 0; // Added to store the count value
+
+  ngOnInit(): void {
+    this.loadUserCount();
+  }
+  
+  loadUserCount(): void {
+    this.apiService.getChristianCount().subscribe({
+      next: (res) => {
+        this.christianCount = res.count;
+      },
+      error: (err) => {
+        console.error('Failed to load christian count:', err);
+      }
+    });
+  }
 
 
   addChristian() {
@@ -19,9 +35,6 @@ export class DashboardComponent {
     alert("You can't add")
   }
 
-  searchChristian() {
-    alert("Search Christian functionality coming soon!");
-  }
 
   logout() {
     alert("Logging out...");
