@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { HttpErrorResponse } from '@angular/common/http'; // Import HttpErrorResponse
+import { FormsModule } from '@angular/forms';
 
 export interface LoginResponse {
   token: string;
@@ -11,12 +12,12 @@ export interface LoginResponse {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
   errorMessage: string = '';
   isLoading: boolean = false; // To indicate loading state
@@ -24,9 +25,9 @@ export class LoginComponent {
   constructor(private router: Router, private apiservice: ApiService) {}
 
   login() {
-    if (this.username && this.password) {
+    if (this.email && this.password) {
       this.isLoading = true; // Set loading to true before the API call
-      this.apiservice.loginChristian(this.username, this.password).subscribe({
+      this.apiservice.loginChristian(this.email, this.password).subscribe({
         next: (response: LoginResponse) => {
           console.log('Login successful:', response);
           // Store the token in localStorage or use it as needed

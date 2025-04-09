@@ -17,8 +17,8 @@ export class ApiService {
   }
 
   // Login a user
-  loginChristian(username: string, password: string): Observable<LoginResponse> {
-    const loginData = { username, password };
+  loginChristian(email: string, password: string): Observable<LoginResponse> {
+    const loginData = { email, password };
     return this.http.post<LoginResponse>(`${this.baseUrl}/auth/login`, loginData);
   }
 

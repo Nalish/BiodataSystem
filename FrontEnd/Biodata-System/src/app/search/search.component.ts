@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { CommonModule } from '@angular/common';
-import { ApiService } from '../services/api.service';
-=======
 import { CommonModule, NgFor } from '@angular/common';
 import { ApiService } from '../services/api.service';
 import { FormsModule } from '@angular/forms';
->>>>>>> b09d633fbd76c454dcb7857938cd1ba308dc0958
 
 @Component({
   selector: 'app-search',
@@ -15,10 +10,6 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
-<<<<<<< HEAD
-export class SearchComponent implements OnInit{
-  constructor(private apiService: ApiService) {}
-=======
 export class SearchComponent implements OnInit {
 
   // Add any methods or properties needed for the search functionality
@@ -83,14 +74,6 @@ export class SearchComponent implements OnInit {
 
 
 
->>>>>>> b09d633fbd76c454dcb7857938cd1ba308dc0958
-
-  ngOnInit(): void {
-    this.apiService.testBackendConnection().subscribe({
-      next: (res) => console.log('✅ Success:', res),
-      error: (err) => console.error('❌ Error:', err)
-    });
-  }
   
 }
 
