@@ -1,43 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-
 <body>
 
     <div class="auth-container">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <h2>Login</h2>
-            <p>
-                <input type="email" id="email" placeholder="Email Address" formControlName="email">
-            </p>
-            <div *ngIf="!form.controls.email?.valid && form.controls.email.touched">
-                <p *ngIf="form.controls.email.errors?.['required']">
-                    Email is required!
-                </p>
-                <p *ngIf="form.controls.email.errors?.['email']">
-                    Email is invalid!
-                </p>
-            </div>
-            <p>
-                <input type="password" id="password" placeholder="Password" formControlName="password">
-            </p>
-            <div *ngIf="!form.controls.password.valid && form.controls.password.touched">
-                <p *ngIf="form.controls.password.errors?.['required']">
-                    Password is required!
-                </p>
-            </div>
-            <button type="submit" [disabled]="form.invalid">Login</button>
-            <p *ngIf="!form.valid && form.touched && errorMessage" class="error-message">{{ errorMessage }}</p>
-            <p style="color: black;">Don't have an account? <a routerLink="/register">Register</a></p>
-        </form>
-
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email Address" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button (click)="navigateToDashboard()">Login</button>
+        <a href="register.html">Don't have an account? Register</a>
     </div>
 </body>
-
-</html>
-

@@ -1,16 +1,12 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f1e9e9;
+
+body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    margin: 0;
-    padding: 1rem;
+    height:100vh;
 }
+
+
 
 .auth-container {
     background-color: rgba(255, 255, 255, 0.9);
@@ -85,16 +81,4 @@ input:focus,
 button:focus {
     outline: 2px solid #c2ae6d;
     outline-offset: 2px;
-}
-
-input.ng-touched.ng-invalid, select.ng-touched.ng-invalid{
-    border-left: 5px solid #a94442;
-}
-
-input.ng-touched.ng-valid, select.ng-touched.ng-valid{
-    border-left: 5px solid green;
-}
-
-div p {
-    color: red;
 }

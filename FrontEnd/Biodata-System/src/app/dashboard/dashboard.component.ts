@@ -17,15 +17,16 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.loadUserCount();
   }
-
+  
   loadUserCount(): void {
-    this.apiService.getDummyChristianCount().subscribe((data) => {
-      this.christianCount = data.count; // Update the class property with the count value 
-    },
-      (error) => {
-        console.error('Error fetching user count:', error);
+    this.apiService.getChristianCount().subscribe({
+      next: (res) => {
+        this.christianCount = res.count;
+      },
+      error: (err) => {
+        console.error('Failed to load christian count:', err);
       }
-    );
+    });
   }
 
 

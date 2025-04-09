@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ApiService } from '../services/api.service';
@@ -8,10 +9,20 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   selector: 'app-register',
   standalone:true,
   imports: [CommonModule, RouterLink, ReactiveFormsModule],
+=======
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-register',
+  standalone: true,
+  imports: [CommonModule],
+>>>>>>> 728ff8a0f150c15e1eb073e0bff8ba685dc1c31f
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+<<<<<<< HEAD
 constructor(private register: ApiService, private router: Router) { }
 
 
@@ -58,6 +69,14 @@ onSubmit():void {
   );
 
 
+=======
+  constructor(private router: Router) { }
+  navigateToLogin(): void {
+    setTimeout(() => {
+      this.router.navigate(['/login'])
+    }, 1000)
+  }
+>>>>>>> 728ff8a0f150c15e1eb073e0bff8ba685dc1c31f
 }
 navigateToLogin():void {
   setTimeout(() => {
