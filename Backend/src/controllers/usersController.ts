@@ -54,30 +54,18 @@ export const getUserById = asyncHandler(async (req, res) => {
 
 
 
-//Get total number of users
+//Get total number of users 
 export const getUserCount = asyncHandler(async (req, res) => {
     try {
-        const result = await pool.query("SELECT COUNT(*) FROM users");
-        const count = result.rows[0].count;
+        const result = await pool.query('SELECT COUNT(*) AS userCount FROM users');
+        const count = parseInt(result.rows[0].userCount, 10);
         res.json({ count });
-        console.log(count);
+        console.log('User count:', count);
     } catch (error) {
         console.error("Error fetching user count:", error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error", error: error });
     }
 });
-
-
-// user.controller.js
-// app.get('/api/users/count', async (req, res) => {
-//     try {
-//         const count = await User.countDocuments(); // MongoDB
-//         // or for SQL: const result = await pool.query('SELECT COUNT(*) FROM users');
-//         res.json({ count });
-//     } catch (error) {
-//         res.status(500).json({ error: 'Failed to get user count' });
-//     }
-// });
 
 //update user
 
@@ -126,7 +114,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
         }
         res.json({ message: "User deleted" })
     } catch (error) {
-        console.error("Error creating user:", error);
+        console.error("Error fetching users count:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 })

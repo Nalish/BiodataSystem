@@ -10,15 +10,15 @@ const router = express.Router()
 
 //Librarian can manage all users
 //Librarians can create, update and get users
-router.get("/", getUsers)
-router.get("/:id", getUserById)
-router.get("/count", getUserCount)
-router.get("/name/:name", getUserByName)
-router.put("/:id",updateUser)
+router.get("/",protect, getUsers)
+router.get("/:id",protect, getUserById)
+router.get("/count",protect, getUserCount)
+router.get("/name/:name",protect, getUserByName)
+router.put("/:id",protect, updateUser)
 
 //Admins can manage all users
 //Admins can create, update, and delete users
-router.delete("/:id", deleteUser)
+router.delete("/:id",protect, deleteUser)
 
 
 

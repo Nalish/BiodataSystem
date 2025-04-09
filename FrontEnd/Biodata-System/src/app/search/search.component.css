@@ -35,13 +35,14 @@ body {
     background-color: #c2ae6d;
     color: white;
     border: none;
+    border-left: #fff 2px solid;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 0 20px 20px 0;
 }
 
 .search-button:hover {
-    background-color: #c2ae6d;
+    background-color: #8d7f50;
 }
 
 /* .details-container {

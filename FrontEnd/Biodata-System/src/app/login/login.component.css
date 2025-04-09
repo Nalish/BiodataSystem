@@ -56,7 +56,6 @@ button:hover {
 }
 
 a {
-    display: block;
     margin-top: 16px;
     text-decoration: none;
     color: #4a002a;
@@ -86,4 +85,16 @@ input:focus,
 button:focus {
     outline: 2px solid #c2ae6d;
     outline-offset: 2px;
+}
+
+input.ng-touched.ng-invalid, select.ng-touched.ng-invalid{
+    border-left: 5px solid #a94442;
+}
+
+input.ng-touched.ng-valid, select.ng-touched.ng-valid{
+    border-left: 5px solid green;
+}
+
+div p {
+    color: red;
 }

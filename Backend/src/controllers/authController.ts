@@ -112,14 +112,14 @@ export const logoutUser = asyncHandler(async (req: Request, res: Response, next:
     // Clear access and refresh tokens for this specific user
     const userId = userQuery.rows[0].id;
 
-    res.cookie(`access_token_${userId}`, "", {
+    res.cookie('access_token', "", {
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
         sameSite: "strict",
         expires: new Date(0) // Expire immediately
     });
 
-    res.cookie(`refresh_token_${userId}`, "", {
+    res.cookie('refresh_token', "", {
         httpOnly: true,
         secure: process.env.NODE_ENV !== "development",
         sameSite: "strict",

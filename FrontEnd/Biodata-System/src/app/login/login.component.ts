@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angu
 @Component({
   selector: 'app-login',
   standalone:true,
-  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -27,6 +27,7 @@ successMessage = '';
 
 
 ngOnInit(): void {
+  this.onSubmit();
 }
 
 onSubmit():void {
@@ -35,9 +36,13 @@ onSubmit():void {
     return;
   }
   this.login.loginChristian(this.form.value).subscribe(
+    
     (response) => {
       localStorage.setItem('user', JSON.stringify(response))
       console.log('Login successful:', response);
+      console.log(this.form);
+      // Store the token in local storage or session storage
+      localStorage.setItem('token', response.token); // Adjust according to your API response
       this.successMessage = 'Login successful! Redirecting to dashboard...';
       this.navigateToDashboard();
     },

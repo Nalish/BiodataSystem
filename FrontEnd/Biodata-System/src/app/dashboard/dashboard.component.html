@@ -14,13 +14,13 @@
         <h2>Dashboard</h2>
         <button  (click)="navigateToSearch()">Search Christian</button>
         <button (click)="navigateToForm()">Add Christian</button>
-        <button (click)="logout()">Logout</button>
+        <button (click)="logoutChristian()">Logout</button>
     </div>
 
     <!-- Dashboard Content -->
     <div class="dashboard">
         <h1>Christian Data Management</h1>
-        <div class="total-christians" (change)="loadUserCount()">
+        <div class="total-christians">
             Total Christians: <span id="christianCount">{{ christianCount }}</span>
         </div>
     </div>
