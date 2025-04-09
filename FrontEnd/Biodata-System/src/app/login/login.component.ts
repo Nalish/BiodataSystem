@@ -1,15 +1,19 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../services/api.service';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http'; // Import HttpErrorResponse
+import { FormsModule } from '@angular/forms';
+
+export interface LoginResponse {
+  token: string;
+}
 
 @Component({
   selector: 'app-login',
   standalone:true,
-  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [RouterModule, CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit{
 constructor(private login: ApiService, private router: Router) { }
@@ -27,7 +31,6 @@ successMessage = '';
 
 
 ngOnInit(): void {
-  this.onSubmit();
 }
 
 onSubmit():void {
@@ -36,13 +39,9 @@ onSubmit():void {
     return;
   }
   this.login.loginChristian(this.form.value).subscribe(
-    
     (response) => {
       localStorage.setItem('user', JSON.stringify(response))
       console.log('Login successful:', response);
-      console.log(this.form);
-      // Store the token in local storage or session storage
-      localStorage.setItem('token', response.token); // Adjust according to your API response
       this.successMessage = 'Login successful! Redirecting to dashboard...';
       this.navigateToDashboard();
     },
@@ -60,4 +59,9 @@ navigateToDashboard():void {
   }, 1500);
 }
 
+  navigateToRegister(): void {
+    setTimeout(() => {
+      this.router.navigate(['/register']);
+    }, 1000); // Delay to show registration page
+  }
 }
